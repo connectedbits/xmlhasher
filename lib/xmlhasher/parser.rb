@@ -10,7 +10,7 @@ module XmlHasher
 
     def parse(xml)
       handler = Handler.new(@options)
-      Ox.sax_parse(handler, convert(xml))
+      Ox.sax_parse(handler, convert(xml), @options)
       handler.to_hash
     end
 

@@ -38,4 +38,16 @@ class XmlhasherTest < Test::Unit::TestCase
     assert_not_empty result
     assert_equal Hash, result.class
   end
+
+  def test_configure_settings_passthrough
+    xml = "<foo>one\ntwo\nthree</foo>"
+    result = XmlHasher.parse(xml)
+    assert_equal ({ "foo" => "one two three" }), result
+
+    result = XmlHasher.parse(xml, { string_keys: false })
+    assert_equal ({ foo: "one two three" }), result
+
+    result = XmlHasher.parse(xml, { string_keys: false, skip: :skip_return })
+    assert_equal ({ foo: "one\ntwo\nthree" }), result
+  end
 end
