@@ -9,6 +9,8 @@ module XmlHasher
       @options = options
       @stack = []
       @transform_cache = {}
+
+      super()
     end
 
     def to_hash
@@ -57,7 +59,7 @@ module XmlHasher
     end
 
     def escape(value)
-      EscapeUtils.unescape_html(value)
+      CGI.unescapeHTML(value)
     end
 
     def ignore_attribute?(name)
