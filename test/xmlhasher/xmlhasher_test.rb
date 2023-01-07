@@ -44,10 +44,10 @@ class XmlhasherTest < Test::Unit::TestCase
     result = XmlHasher.parse(xml)
     assert_equal ({ "foo" => "one two three" }), result
 
-    result = XmlHasher.parse(xml, { string_keys: false })
+    result = XmlHasher::Parser.new(string_keys: false).parse(xml)
     assert_equal ({ foo: "one two three" }), result
 
-    result = XmlHasher.parse(xml, { string_keys: false, skip: :skip_return })
+    result = XmlHasher::Parser.new(string_keys: false, skip: :skip_return).parse(xml)
     assert_equal ({ foo: "one\ntwo\nthree" }), result
   end
 end
