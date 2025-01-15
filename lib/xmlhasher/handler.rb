@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 require 'ox'
-require 'escape_utils'
 
 module XmlHasher
   class Handler < ::Ox::Sax
